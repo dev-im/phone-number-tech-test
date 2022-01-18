@@ -11,6 +11,8 @@ module Formatter
                 remove_all_spaces(number)
                 no_number_input(number)
                 number_length(number)
+                valid_characters(number)
+                number
             end
 
             private
@@ -25,6 +27,14 @@ module Formatter
 
             def number_length(number)
                 number.length < 11 || number.length > 13 ? raise("Invalid phone number length") : number
+            end
+
+            def valid_characters(number)
+                number_split = number.split(//)
+                accepted_characters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+"]
+                number_split.each do |character| 
+                    accepted_characters.include?(character) == false ? raise("Only 0-9 and + characters are accepted") : number
+                end
             end
         end
     end

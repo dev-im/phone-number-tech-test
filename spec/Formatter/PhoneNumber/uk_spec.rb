@@ -14,7 +14,7 @@ RSpec.describe Formatter::PhoneNumber::UK, "#format" do
             expect(subject.call(number)).to eq("07362153796")
         end
 
-        it "removes any spaces within the string and raises an error when the string is too short" do
+        it "removes any spaces within the string and raises an error when the string is too long" do
             number = " 447 7530 322605653"
             expect{subject.call(number)}.to raise_error(RuntimeError, "Invalid phone number length")
         end
@@ -27,6 +27,11 @@ RSpec.describe Formatter::PhoneNumber::UK, "#format" do
         it "raises an error when the string is less than 11 or more than 13 characters" do
             number = "0739288347583032"
             expect{subject.call(number)}.to raise_error(RuntimeError, "Invalid phone number length")
+        end
+
+        it "raises an error when the string has an invalid character" do
+            number = "0738o 6317d9"
+            expect{subject.call(number)}.to raise_error(RuntimeError, "Only 0-9 and + characters are accepted")
         end
     end
 end
