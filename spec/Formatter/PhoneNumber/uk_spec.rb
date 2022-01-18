@@ -2,6 +2,21 @@ require 'formatter/phonenumber/uk'
 
 RSpec.describe Formatter::PhoneNumber::UK, "#format" do
     context "with a valid format" do
+        it "removes any spaces within the string" do
+            number = "07362 153796 "
+            expect(subject.call(number)).to eq("+447362153796")
+        end
+
+        it "removes the '0' and adds '+44' to the start of a valid number" do
+            number = "07468 689345"
+            expect(subject.call(number)).to eq("+447468689345")
+        end
+
+        it "removes the '44' and adds '+44' to the start of a valid number" do
+            number = "447468 689345"
+            expect(subject.call(number)).to eq("+447468689345")
+        end
+
         it "accepts the phone number" do
             number = "+447356432176"
             expect(subject.call(number)).to eq("+447356432176")
@@ -9,11 +24,6 @@ RSpec.describe Formatter::PhoneNumber::UK, "#format" do
     end
 
     context "with an invalid format" do
-        it "removes any spaces within the string" do
-            number = "07362 153796 "
-            expect(subject.call(number)).to eq("07362153796")
-        end
-
         it "removes any spaces within the string and raises an error when the string is too long" do
             number = " 447 7530 322605653"
             expect{subject.call(number)}.to raise_error(RuntimeError, "Invalid phone number length")

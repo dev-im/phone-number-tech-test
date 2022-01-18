@@ -1,5 +1,4 @@
 #TODO
-# return the number with the proper +447 prefixed to the rest of the string
 # extract errors into their own classes
 
 module Formatter
@@ -11,6 +10,7 @@ module Formatter
                 number_length(number)
                 valid_characters(number)
                 valid_format(number)
+                format_number(number)
                 number
             end
 
@@ -46,6 +46,16 @@ module Formatter
                 else 
                     number
                 end
+            end
+
+            def format_number(number)
+                return if number.start_with?("+447")
+                if number.start_with?("447")
+                    number.delete_prefix!("44")
+                else number.start_with?("07")
+                    number.delete_prefix!("0")
+                end
+                number.prepend("+44")
             end
         end
     end
