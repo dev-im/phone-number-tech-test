@@ -1,8 +1,15 @@
 # Butternut Box Backend Tech Task
 
-## **Source code**
+## Local installation
 
-We've prepared a Github repository to provide you with a starting point for your Butternut Box engineering task. From [this repo](https://github.com/ButternutBox/interview_tasks), you can clone [this directory](https://github.com/ButternutBox/interview_tasks/tree/main/phone_number_task) to start your build. We've set up this repo so that it can be used as a monolith for both front end and back end work but **you only need to do the back end part (i.e. Phone Number task)**. 
+* Clone this repository
+* Run the following commands
+
+```
+bundle install
+```
+
+* Check all the tests are running using ```rspec``` commmand.
 
 ## Context
 
@@ -40,8 +47,6 @@ end
 
 You can use Minitest or RSpec for the testing. Please do not create a full Rails application to implement this: Just use Ruby to complete this task. You cannot use any libraries to aid the implementation or testing of this class outside of RSpec.
 
-And then execute:
-
-    $ bundle install
-
 ## Next Steps
+- create error classes for all of the different errors that can occur
+- refactor the methods so that they are cleaner
