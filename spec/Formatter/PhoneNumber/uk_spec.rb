@@ -33,5 +33,10 @@ RSpec.describe Formatter::PhoneNumber::UK, "#format" do
             number = "0738o 6317d9"
             expect{subject.call(number)}.to raise_error(RuntimeError, "Only 0-9 and + characters are accepted")
         end
+
+        it "raises an error when the string does not begin with an accepted format" do
+            number = "73892362619"
+            expect{subject.call(number)}.to raise_error(RuntimeError, "Number must begin with +447, 447 or 07")
+        end
     end
 end
