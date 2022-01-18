@@ -1,4 +1,4 @@
-require 'formatter/phonenumber/uk'
+require 'formatter/phone_number/uk'
 
 RSpec.describe Formatter::PhoneNumber::UK, "#format" do
     context "with a valid format" do
