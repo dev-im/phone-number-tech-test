@@ -13,5 +13,10 @@ RSpec.describe Formatter::PhoneNumber::UK, "#format" do
             number = ""
             expect{subject.call(number)}.to raise_error(RuntimeError, "You must provide a phone number")
         end
+
+        it "raises an error when the string is less than 11 or more than 13 characters" do
+            number = "0739288347583032"
+            expect{subject.call(number)}.to raise_error(RuntimeError, "Invalid phone number length")
+        end
     end
 end
