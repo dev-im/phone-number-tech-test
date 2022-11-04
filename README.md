@@ -1,4 +1,4 @@
-# Butternut Box Backend Tech Task
+# Backend Tech Task
 
 ## Local installation
 
